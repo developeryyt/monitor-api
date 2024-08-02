@@ -20,7 +20,7 @@ const authJWT = require('../../middleware/AuthJWT')
 router.get('/login',(req, res) => {
     const params = req.body;
 
-    console.log(params)
+    console.log(params, '파람스')
 
 })
 
