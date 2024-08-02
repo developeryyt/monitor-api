@@ -6,7 +6,10 @@ const utc = require('dayjs/plugin/utc');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const autoRoutees = require('./middleware/AutoLoadRoutes')
+const ipChecker = require('./middleware/IpChecker')
 const path = require('path')
+
+
 
 
 class App {
@@ -20,8 +23,6 @@ class App {
         this.port = process.env.PORT || 4000;
         this.isDisableKeepAlive = false;
 
-        console.log(`${process.env.NODE_ENV}`, '1')
-
         this.initMiddleWares()
         this.initControllers()
     }
@@ -29,6 +30,7 @@ class App {
     initMiddleWares() {
         this.app.set('trust proxy', true)
         this.app.use(cors())
+        this.app.use(ipChecker)
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: false }))
         this.app.use(cookieParser())
