@@ -17,10 +17,13 @@ const authJWT = require('../../middleware/AuthJWT')
 //     res.json(response);
 // });
 
-router.get('/login',(req, res) => {
+router.post('/login',async (req, res) => {
     const params = req.body;
+    const { userId, userPw } = params
 
-    console.log(params, '파람스')
+    // await checkUser(params)
+    console.log({ userId, userPw })
+
 
 })
 
