@@ -12,7 +12,6 @@ const authJwt = (req, res, next) => {
     try {
         req.user = verify(token)
         if(!req.user?.['ok']) return res.status(401).json({ message: '유효하지 않은 토큰입니다.' })
-
         next()
     }catch (err) {
         return res.status(401).json({ message: '유효하지 않은 토큰입니다.' })
