@@ -1,31 +1,25 @@
 const express = require("express");
 const router = express.Router();
+const createError = require('http-errors');
 const authJWT = require('../../middleware/AuthJWT')
+const {authMiddleWare} = require("../../middleware/AuthMiddleWare");
 
 
-// router.post("/shop", async (req, res, next) => {
-//     const mb_id = req.body?.mb_id;
-//     const mb_pw = req.body?.mb_pw;
-//     // if (!mb_id || !mb_pw) return next(createError(400, "mb_id or mb_pw is not exist"));
-//     let response = {};
-//     // try {
-//     //     const _jwtToken = await Shop.findOne({ where: {mb_id, mb_pw} });
-//     //     response["token"] = sign(_jwtToken);
-//     // } catch (e) {
-//     //     return next(createError(500, e.message));
-//     // }
-//     res.json(response);
-// });
-
-router.post('/login',async (req, res) => {
+router.post('/login',async (req, res, next) => {
     const params = req.body;
     const { userId, userPw } = params
 
-    // await checkUser(params)
-    console.log({ userId, userPw })
+    if(!userId || !userPw) return next(createError(400, '아이디, 비밀번호를 확인해주시기 바랍니다.'))
+
 
 
 })
+
+
+// router.post('/token', authMiddleWare, async (req, res, next) => {
+//
+//
+// })
 
 // router.get("/token", authJWT, async (req, res, next) => {
 //     const params = await req.body;
