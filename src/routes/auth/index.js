@@ -5,26 +5,33 @@ const authJWT = require('../../middleware/AuthJWT')
 const {authMiddleWare} = require("../../middleware/AuthMiddleWare");
 const {getMember} = require("../../database/dao/Member");
 const _ = require('lodash')
+const {isNull} = require("lodash");
 
 router.post('/login',async (req, res, next) => {
     const params = req.body;
     const { userId, userPw } = params
     let Member = null;
 
-    if(!userId || !userPw) return next(createError(400, '아이디, 비밀번호를 확인해주시기 바랍니다.'))
 
-    try {
-        Member = await getMember(userId, userPw)
+    // if(!userId || !userPw) return next(createError(400, '아이디, 비밀번호를 확인해주시기 바랍니다.'))
 
-        if(!_.isEmpty(Member)) {
 
-        }else {
+    // res.status(401).json({
+    //     message: '에러가 발생함'
+    // })
 
-        }
-
-    }catch(err) {
-        return next(createError(500, err.message))
-    }
+    // try {
+    //     Member = await getMember(userId, userPw)
+    //
+    //     if(!_.isEmpty(Member)) {
+    //
+    //     }else {
+    //
+    //     }
+    //
+    // }catch(err) {
+    //     return next(createError(500, err.message))
+    // }
 
 
 })
